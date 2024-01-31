@@ -7,7 +7,7 @@ import psycopg2
 from flatten_json import flatten
 
 # API URL
-json_api_url = "https://example.com/api/your-json-endpoint"
+json_api_url = "https://www.circl.lu/doc/misp/feed-osint/0b988513-9535-42f0-9ebc-5d6aec2e1c79.json"
 
 # PostgreSQL Connection
 conn = psycopg2.connect(
