@@ -13,7 +13,7 @@ json_api_url = "https://www.circl.lu/doc/misp/feed-osint/0b988513-9535-42f0-9ebc
 conn = psycopg2.connect(
     database="de_haze",
     user="postgres",
-    password="Jasim@123",
+    password="jasim@123",
     host="localhost",
     port="5432"
 )
