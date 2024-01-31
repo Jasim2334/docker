@@ -32,7 +32,7 @@ flattened_data = [flatten_json(record) for record in data[:100]]
 # Write to PostgreSQL
 cursor = conn.cursor()
 for record in flattened_data:
-    cursor.execute("INSERT INTO your_table_name VALUES (%s)" % ','.join(['%s'] * len(record)), list(record.values()))
+    cursor.execute("INSERT INTO docker_json VALUES (%s)" % ','.join(['%s'] * len(record)), list(record.values()))
 conn.commit()
 cursor.close()
 conn.close()
