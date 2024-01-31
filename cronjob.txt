@@ -1,0 +1,2 @@
+*/5 * * * * /usr/bin/docker-compose -f /path/to/docker-compose.yml up
+
