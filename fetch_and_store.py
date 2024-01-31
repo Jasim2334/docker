@@ -1,5 +1,6 @@
 # Install required packages
-pip install requests psycopg2
+# Make sure to run this command outside of the script before executing the script
+# pip install requests psycopg2 flatten_json
 
 # Script fetch_and_store.py
 import requests
@@ -29,10 +30,22 @@ data = response.json()
 # Flatten fields
 flattened_data = [flatten_json(record) for record in data[:100]]
 
-# Write to PostgreSQL
+# Identify unique fields from the flattened data
+unique_fields = set(field for record in flattened_data for field in record.keys())
+
+# Generate the CREATE TABLE query dynamically
+create_table_query = f"CREATE TABLE IF NOT EXISTS docker_json (id SERIAL PRIMARY KEY, {', '.join(f'{field} VARCHAR(255)' for field in unique_fields)});"
+
+# Create the table
 cursor = conn.cursor()
+cursor.execute(create_table_query)
+conn.commit()
+
+# Write to PostgreSQL
 for record in flattened_data:
-    cursor.execute("INSERT INTO docker_json VALUES (%s)" % ','.join(['%s'] * len(record)), list(record.values()))
+    insert_query = f"INSERT INTO docker_json ({', '.join(record.keys())}) VALUES ({', '.join(['%s']*len(record))})"
+    cursor.execute(insert_query, list(record.values()))
+
 conn.commit()
 cursor.close()
 conn.close()
