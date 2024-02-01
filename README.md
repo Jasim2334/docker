@@ -19,19 +19,15 @@ PostgreSQL
 Installation
 Clone the repository:
 
-bash
-Copy code
 git clone <repository-url>
 cd <project-directory>
 Build the Docker image:
 
-bash
-Copy code
+
 docker build -t mypythonscript .
 Install Python dependencies:
 
-bash
-Copy code
+
 pip install -r requirements.txt
 Configure PostgreSQL:
 
@@ -40,16 +36,12 @@ Update the connection parameters in fetch_and_store.py if needed.
 Usage
 Run the Python script manually:
 
-bash
-Copy code
 python fetch_and_store.py
 Ensure that the PostgreSQL server is running and configured correctly.
 
 Docker Usage
 To run the Docker container and execute the Python script, use the following command:
 
-bash
-Copy code
 docker run mypythonscript
 Cron Jobs
 The mycronjobs file contains cron job entries to schedule the execution of the Python script at specific intervals. For example, the entry */1 * * * * runs the script every minute.
