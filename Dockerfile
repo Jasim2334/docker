@@ -10,6 +10,12 @@ COPY . .
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Install cron
+RUN apt-get update && apt-get -y install cron
+
+# Create cron log file
+RUN touch /var/log/cron.log
+
 # Run fetch_and_store.py when the container launches
-CMD ["python", "fetch_and_store.py"]
+CMD ["cron", "-f"]
 
