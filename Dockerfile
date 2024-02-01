@@ -1,12 +1,15 @@
-# Dockerfile
-FROM python:3.9
+# Use an official Python runtime as a parent image
+FROM python:3.8-slim
 
-WORKDIR /app
+# Set the working directory in the container
+WORKDIR /usr/src/app
 
-COPY requirements.txt /app/
+# Copy the current directory contents into the container
+COPY . .
+
+# Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . /app
-
+# Run fetch_and_store.py when the container launches
 CMD ["python", "fetch_and_store.py"]
 
