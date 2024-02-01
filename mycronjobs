@@ -1,2 +1,2 @@
-*/1 * * * * docker run mypythonscript
+*/1 * * * * docker run mypythonscript >> /home/jasim/Desktop/docker/script_log.log 2>&1
 
